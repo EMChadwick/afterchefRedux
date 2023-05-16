@@ -13,22 +13,26 @@ use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Post;
 
-class HomepageController extends Controller
+class PostPageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function show(Request $request)
+    public function show(string $postID)
     {
         //change this to latest() if it were a real system with loads of posts lol
         //$posts = Post::select(['title', 'user_id'])->with('postedBy:id, name')->get();
+        $post = Post::select('title', 'description', 'post_image', 'user_id')
+            ->where('id', $postID)
+            ->get()->first();
 
-        $posts = Post::join('users','posts.user_id', '=', 'users.id')
-            ->select('posts.id','title', 'name')
-            ->get();
+        $author = User::where('id', 'user_id')->get()->first();
         // resources/js/Pages/ is the root for rendering views
-        return Inertia::render('Homepage', [
-            'posts'=> $posts
+        
+        return Inertia::render('Post', [
+            'post'=> $post,
+            'author' => $author,
+            'passedID' =>$postID
         ]);
     }
 

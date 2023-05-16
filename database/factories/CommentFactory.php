@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Comment;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
  */
@@ -20,9 +21,9 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'content'=>'Test comment',
-            'post_id'=>'testpost',
-            'user_id'=> 'testuser'
+            'content'=>fake()->sentence(),
+            'post_id'=>Post::all()->random()->id,
+            'user_id' => User::all()->random()->id
         ];
     }
 }

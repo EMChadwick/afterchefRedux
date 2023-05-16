@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Site\HomepageController;
+use App\Http\Controllers\Site\PostPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomepageController::class, 'show']);
+Route::get('/post/{post_id}', [PostPageController::class, 'show']);

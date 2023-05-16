@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         if (config('app.env') !== 'production') {
             $this->call(UserSeeder::class);
-            User::factory()->count(5)->has(
+            User::factory()->count(2)->has(
                 Post::factory(3)
             )->create();
             $this->call(PostSeeder::class);

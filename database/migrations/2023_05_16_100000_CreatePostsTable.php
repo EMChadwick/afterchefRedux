@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -15,10 +16,9 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->timestamps();
             $table->string('title');
-            $table->bigInteger('user_id')->unsigned()->index()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignIdFor(User::class)->constrained()->nullable()->cascadeOnDelete();
             $table->json('post_image')->nullable();
-            $table->string('description');
+            $table->string('description', 500);
         });
     }
 
