@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Oneduo\NovaFileManager\Casts\AssetCollection;
+use Oneduo\NovaFileManager\Casts\Asset;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -15,12 +16,12 @@ class Post extends Model
     protected $fillable = [
         'title',
         'description',
-        'postImage',
+        'post_imagemage',
         'user_id'
     ];
 
     protected $casts = [
-        'postImage' => AssetCollection::class,
+        'post_image' => Asset::class,
     ];
 
     public function postedBy(): BelongsTo
@@ -32,4 +33,5 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
 }

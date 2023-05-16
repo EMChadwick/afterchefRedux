@@ -3,23 +3,25 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-
+use App\Http\Helper;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Oneduo\NovaFileManager\Casts\AssetCollection;
+use Oneduo\NovaFileManager\Casts\Asset;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasUuids;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+    //protected $guard_name = 'web';
     protected $fillable = [
         'name',
         'email',
@@ -46,7 +48,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'profile_picture' => AssetCollection::class,
+        'profile_picture' => Asset::class,
     ];
 
     public function posts()
@@ -57,5 +59,10 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function getProfilePicturePathAttribute()
+    {
+        return Helper::assetToURL($this->profile_picture);
     }
 }

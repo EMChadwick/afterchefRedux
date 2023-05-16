@@ -5,6 +5,10 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Oneduo\NovaFileManager\Support\Asset;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
 
 class UserSeeder extends Seeder
 {
@@ -13,19 +17,18 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Superadmins
-        $this->seeduser([
+        // fuck it roles aren't necessary figure them out later
+        DB::table('users')->insert([
             'name' => 'Ed Chadwick',
             'email' => 'edward.chadwick@rhinogroup.co.uk',
             'password' => bcrypt('bfdDFGdfDFGdfgd'),
             'profile_picture' => new Asset('public', 'users/ed.png'),
-        ], 'Superadmin');
-        //fake peeps
-        $this->seeduser([
-            'name' => 'Ed Chadwick',
-            'email' => 'edward.chadwick@rhinogroup.co.uk',
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Bilbo Swaggins',
+            'email' => 'bilbo.swaggins@rhinogroup.co.uk',
             'password' => bcrypt('BFWBGr4hWGNGegfher4'),
-        ], 'Admin');
+        ]);
     }
 
     private function seedUser($data, $role)

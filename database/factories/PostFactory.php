@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Post;
 use App\Models\User;
 use Oneduo\NovaFileManager\Support\Asset;
 
@@ -21,11 +23,10 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'=>'testpost',
-            'description'=>'yeet',
-            'postImage'=> new Asset('public','posts/default.png'),
-            'user_id' => User::all()->random()->id,
-            ''
+            'title'=>fake()->word(),
+            'description'=>fake()->paragraph(),
+            'post_image'=> new Asset('public','post_images/chef.png'),
+            'user_id' => User::all()->random()->id
         ];
     }
 }

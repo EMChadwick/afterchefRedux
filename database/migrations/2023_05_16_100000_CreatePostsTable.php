@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->timestamps();
+            $table->string('title');
+            $table->bigInteger('user_id')->unsigned()->index()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->json('post_image')->nullable();
+            $table->string('description');
         });
     }
 
