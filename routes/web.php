@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomepageController::class, 'show']);
 Route::get('/post/{post_id}', [PostPageController::class, 'show']);
+//Route::get('/images/{path}', [ImageController::class, 'show']);
