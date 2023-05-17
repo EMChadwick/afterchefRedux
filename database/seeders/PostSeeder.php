@@ -28,14 +28,14 @@ class PostSeeder extends Seeder
             'id' => Str::uuid(),
             'title' => 'Whinberry pie',
             'user_id' => 3,
-            'post_image' => new Asset('public', 'post_images/IMG_20220718_2.jpg'),
+            'post_image' => new Asset('public', 'post_images/IMG_20220718_203600.jpg'),
             'description' => "Went whinberry picking over the weekend and tried my hand at making a pie with them. It's delicious, but I've got a purple tongue now!"
         ]);
         Post::create([
             'id' => Str::uuid(),
             'title' => "Pumpkin and goat's cheese puffs",
             'user_id' => 5,
-            'post_image' => new Asset('public', 'post_images/IMG_20201026_1.jpg'),
+            'post_image' => new Asset('public', 'post_images/IMG_20201026_152258.jpg'),
             'description' => "I've been making these every Halloween for the past few years, they're absolutely to die for, and so easy!"
         ]);
         Post::create([

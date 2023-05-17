@@ -41,6 +41,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    // protected $appends = [
+    //     'profile_picture_path',
+    // ];
+
     /**
      * The attributes that should be cast.
      *
@@ -61,8 +65,5 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    public function getProfilePicturePathAttribute()
-    {
-        return Helper::assetToURL($this->profile_picture);
-    }
+
 }

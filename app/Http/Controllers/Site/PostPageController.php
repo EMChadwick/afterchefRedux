@@ -20,11 +20,13 @@ class PostPageController extends Controller
      */
     public function show(string $postID)
     {
+        
         //change this to latest() if it were a real system with loads of posts lol
         //$posts = Post::select(['title', 'user_id'])->with('postedBy:id, name')->get();
         $post = Post::select('title', 'description', 'post_image', 'user_id')
             ->where('id', $postID)
             ->get()->first();
+        
 
         $author = User::where('id', 'user_id')->get()->first();
         // resources/js/Pages/ is the root for rendering views

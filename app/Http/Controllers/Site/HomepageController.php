@@ -24,8 +24,10 @@ class HomepageController extends Controller
         //$posts = Post::select(['title', 'user_id'])->with('postedBy:id, name')->get();
 
         $posts = Post::join('users','posts.user_id', '=', 'users.id')
-            ->select('posts.id','title', 'name')
+            ->select('posts.id','title', 'name','post_image')
             ->get();
+
+        
         // resources/js/Pages/ is the root for rendering views
         return Inertia::render('Homepage', [
             'posts'=> $posts

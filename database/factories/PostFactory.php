@@ -25,7 +25,7 @@ class PostFactory extends Factory
         return [
             'title'=>fake()->word(),
             'description'=>fake()->paragraph(),
-            'post_image'=> new Asset('public','post_images/chef.png'),
+            'post_image'=> new Asset('public','post_images/chef.jpg'),
             'user_id' => User::all()->random()->id
         ];
     }
